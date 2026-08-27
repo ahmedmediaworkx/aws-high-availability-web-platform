@@ -19,7 +19,9 @@
   <img src="https://img.shields.io/badge/AWS-ECS%20Fargate-FF9900?logo=amazonaws&logoColor=white" alt="AWS ECS Fargate" />
 </p>
 
-<img src="public/profile.png" width="512" height="512" alt="Ahmed Wael profile photo" style="border-radius: 18px; object-fit: cover;" />
+<div style="text-align: center;">
+  <img src="public/profile.png" width="256" height="350" alt="Ahmed Wael profile photo" style="border-radius: 18px; object-fit: cover;" />
+</div>
 
 ## The idea
 
@@ -94,7 +96,7 @@ flowchart LR
 7. Deploy with an ECS rolling update and wait for healthy targets.
 8. Run a smoke test against the ALB endpoint.
 
-The repository currently contains the application, build scripts, and Nginx runtime configuration. Docker, Terraform, ECR, ECS, and CI workflow files are the next infrastructure layer to add.
+The repository includes the application, build scripts, Nginx runtime configuration, Docker image definition, ECS task definition, and GitHub Actions pipeline. The ECS service itself must be configured with subnets in two Availability Zones and a desired count of at least two.
 
 ## Local development
 
@@ -162,6 +164,9 @@ src/
 public/
   profile.png   Profile image used in the identity card
 nginx.conf      ECS container web-server contract
+Dockerfile      Multi-stage Node and Nginx production image
+ecs-task-definition.json  Fargate task and health-check definition
+.github/workflows/deploy.yml  Validation, ECR publish, and ECS rollout
 ```
 
 ## Design notes
