@@ -48,6 +48,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Validate AWS deployment inputs
+        env:
+          DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          DEPLOY_REGION: ${{ env.AWS_REGION }}
+          ECR_REPOSITORY_NAME: ${{ env.ECR_REPOSITORY }}
+        run: |
+          test -n "$DEPLOY_ROLE_ARN" || { echo "AWS_DEPLOY_ROLE_ARN is missing. Add it as a repository or production environment variable."; exit 1; }
+          test -n "$DEPLOY_REGION" || { echo "AWS_REGION is missing."; exit 1; }
+          test -n "$ECR_REPOSITORY_NAME" || { echo "ECR_REPOSITORY is missing. Add it as a repository or production environment variable."; exit 1; }
+          echo "AWS deployment inputs are present for $DEPLOY_REGION."
+
       - name: Configure AWS credentials with OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
