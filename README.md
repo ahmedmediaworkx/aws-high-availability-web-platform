@@ -19,7 +19,7 @@
   <img src="https://img.shields.io/badge/AWS-ECS%20Fargate-FF9900?logo=amazonaws&logoColor=white" alt="AWS ECS Fargate" />
 </p>
 
-![Project preview](public/profile.png)
+<img src="public/profile.png" width="512" height="512" alt="Ahmed Wael profile photo" style="border-radius: 18px; object-fit: cover;" />
 
 ## The idea
 
